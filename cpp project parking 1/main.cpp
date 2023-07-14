@@ -8,6 +8,7 @@
 using namespace std;
 
 
+
 int main()
 {
     login();
@@ -21,11 +22,11 @@ int main()
         cout << " \t\t  ==========================================";
         cout << "\n\n\t\t\t  1. Arrival of a Car";
         cout << "\n\n\t\t\t  2. Total number of cars arrived";
-        cout << "\n\n\t\t\t  3. Total parking charges of all cars with details";
-        cout << "\n\n\t\t\t  4. Departure of a Car";
-        cout << "\n\n\t\t\t  5. Search for a Car by Car Number";
+        cout << "\n\n\t\t\t  3. Total parking charges ";
+        cout << "\n\n\t\t\t  4. Display all Car";
+        cout << "\n\n\t\t\t  5. Search by Car Number";
         cout << "\n\n\t\t\t  6. Update Car Details";
-        cout << "\n\n\t\t\t  7. Display All Cars";
+        cout << "\n\n\t\t\t  7. Departure of a Car";
         cout << "\n\n\t\t\t  0. Exit Program";
         cout << "\n\n\t\t  ==========================================";
         cout << "\n\n";

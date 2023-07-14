@@ -214,7 +214,7 @@ void update_car()
 
 
 
-//---------display all
+//---------display all-----------------------------------------------------------------
 void display_all()
 {
     system("CLS");
@@ -233,20 +233,20 @@ void display_all()
 
 
 
-//------------------the main login page grants or denies accesss to the system  
+//------------------the main login page grants or denies accesss to the system-----
 int login() {
     string pass = "";
-    char ch;
+    char password;
     car_md();   // user defined function from design.h file
     star_start();
     cout << "\t\t\t\t\t\tCar Parking Reservation System Login\n";
     star_end();
     cout << "\n\n\n\t\t\t\t\t\tEnter Password: ";
-    ch = _getch();
-    while (ch != 13) { // character 13 is enter
-        pass.push_back(ch);
+    password = _getch();
+    while (password != 13) { // character 13 is enter
+        pass.push_back(password);
         cout << '*';
-        ch = _getch();
+        password = _getch();
     }
     if (pass == "pass") {
         star_start();
