@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cpp project parking 1", "cpp project parking 1\cpp project parking 1.vcxproj", "{3E76563C-CD06-4111-954D-A71E0A45381A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E76563C-CD06-4111-954D-A71E0A45381A}.Debug|x64.ActiveCfg = Debug|x64
+		{3E76563C-CD06-4111-954D-A71E0A45381A}.Debug|x64.Build.0 = Debug|x64
+		{3E76563C-CD06-4111-954D-A71E0A45381A}.Debug|x86.ActiveCfg = Debug|Win32
+		{3E76563C-CD06-4111-954D-A71E0A45381A}.Debug|x86.Build.0 = Debug|Win32
+		{3E76563C-CD06-4111-954D-A71E0A45381A}.Release|x64.ActiveCfg = Release|x64
+		{3E76563C-CD06-4111-954D-A71E0A45381A}.Release|x64.Build.0 = Release|x64
+		{3E76563C-CD06-4111-954D-A71E0A45381A}.Release|x86.ActiveCfg = Release|Win32
+		{3E76563C-CD06-4111-954D-A71E0A45381A}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0F2A61E-C31D-49C7-A102-660B8668B76D}
+	EndGlobalSection
+EndGlobal
