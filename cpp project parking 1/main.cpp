@@ -87,7 +87,7 @@ int main()
             infile.close();
             break;
         }
-        case 4:
+        case 7:
         {   
             delete_record();
             break;
@@ -102,7 +102,7 @@ int main()
             update_car();
             break;
         }
-        case 7:
+        case 4:
         {
             display_all();
             break;
