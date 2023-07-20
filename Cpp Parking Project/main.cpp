@@ -41,11 +41,11 @@ int main()
             cout << "\n\n\t\t== Do you want to continue? (y/n): ";
             cin >> f;
             if (f == 'y' || f == 'Y')
-            {
+            {   // Open the "parking3.dat" file in binary mode for writing and appending data
                 ofstream file1("parking3.dat", ios::binary | ios::out | ios::app);
                 Car car;
-                input_detail(car);
-                file1.write((char*)&car, sizeof(car));
+                input_detail(car); // call the function to collect data from users
+                file1.write((char*)&car, sizeof(car)); // Write the car details to the file
             }
             break;
         }
@@ -54,9 +54,11 @@ int main()
             system("CLS");
             cout << "\n\n\t\t=== View the Records in the Parking Database ===";
             cout << "\n";
+            // Open the "parking3.dat" file in binary mode for reading
             ifstream infile("parking3.dat", ios::binary | ios::in);
             int d = 1;
             Car car;
+            // Loop through the file to read and display all car records
             while (infile.read((char*)&car, sizeof(car)))
             {
                 system("CLS");
@@ -88,12 +90,12 @@ int main()
             break;
         }
         case 7:
-        {   
-            delete_record();
+        {
+            delete_record(); // call the function from function.h
             break;
         }
         case 5:
-        {   
+        {
             search_car();
             break;
         }
@@ -110,7 +112,7 @@ int main()
         case 0:
         {
             system("CLS");
-            exit(0);
+            exit(0);// Exit the program with a status code of 0
             break;
         }
         default:
@@ -119,8 +121,7 @@ int main()
             cout << "\n\n\t\tPress Enter to continue";
         }
         }
-        _getch();
+        _getch(); // Wait for a key press before clearing the console screen
     }
-
-    return 0;
+    return 0;  // Return 0 to indicate successful execution of the main function
 }
