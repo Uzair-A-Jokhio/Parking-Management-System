@@ -269,7 +269,6 @@ int login() {
         star_end();
         system("PAUSE");// Pause the program to let the user read the success message
     }
-    }
     else{
         // Display access denied message with decorative lines
         cout << "\n\n\n\t\t\t\tX X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X" << endl;
