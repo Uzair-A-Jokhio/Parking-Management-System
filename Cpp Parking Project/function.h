@@ -30,7 +30,9 @@ void input_detail(Car& car)
     cout << "\n\t\t\t\tCar Parking Reservation";
     doubledash();
 
-    int d = 0;
+    int d = 0; // // Initialize a variable to keep track of parking position
+
+    // Prompt the user to enter the driver's name, car number, hours of stay, and time slot
     cout << "\n\n\t\tEnter the name of driver: ";
     cin >> car.driver_name; 
     cout << "\n\n\t\tEnter the car number: ";
@@ -40,16 +42,17 @@ void input_detail(Car& car)
     cout << "\n\n\t\tEnter the time slot: ";
     cin >> car.time_slot;
 
+    // Check if parking is available (assuming parking slots are limited to 20 and stay duration is less than 8 hours)
     if (d < 20 && car.time_hours < 8)
     {
         cout << "\n\n\t\tParking Available! You can park your car.";
         cout << "\n\n\t\tCar successfully parked!";
-
     }
     else
     {
         cout << "\n\n\t\tParking not possible!!";
     }
+
     doubledash();
 }
 
@@ -63,7 +66,7 @@ void calculate_price(const Car& car)
     cin >> x;
     system("CLS");
 
-    doubledash();                                                 // user defined function from design.h
+    doubledash();  // user defined function from design.h
     cout << "\n\t\t\t Expense Calculation";
     doubledash();
 
@@ -109,12 +112,13 @@ void delete_record()
     ofstream outFile("temp.dat", ios::out | ios::binary);   // open a temporary file for writing 
     Car car;
 
+    // Loop through each record in the input file
     while (inFile.read((char*)&car, sizeof(car)))
     {
         // If the car number does not match the one to be deleted, write the record to the temporary file
         if (car.car_numbers != n)
         {
-            outFile.write((char*)&car, sizeof(car));
+            outFile.write((char*)&car, sizeof(car)); // Write the record to the temporary file
         }
     }
     cout << "\n\n\t\t Parking Record Deleted";
@@ -136,13 +140,13 @@ void delete_record()
 
 
 
-
+//---------------------search the car details by car number--------------------
 void search_car()
 {   
     int n;
     system("CLS");
     
-    cout << "\n\n\t\tEnter the car no you want to search : ";
+    cout << "\n\n\t\tEnter Car NO#, you want to search : ";
     cin >> n;
 
     ifstream inFile("parking3.dat", ios::binary);
@@ -168,13 +172,13 @@ void search_car()
 }
 
 
-
+//----------------------update the car details -------------------------
 void update_car()
 {
     int n;
     system("CLS");
 
-    doubledash();                                                 // user defined function from design.h
+    doubledash();   // user defined function from design.h
     cout << "\n\t\t\t\tUpdate Car Details";
     doubledash();  
 
@@ -197,7 +201,12 @@ void update_car()
             cout << "\n\n\t\tEnter the time slot: ";
             cin >> car.time_slot;
 
+            // Move the file pointer to the position where the current record was read.
+            // The position is calculated by subtracting the size of the 'car' structure from the current file pointer position.
             file.seekp(static_cast<streampos>(file.tellg()) - static_cast<streampos>(sizeof(car)));
+
+            // Write the updated 'car' structure to the file at the position pointed by the file pointer.
+            // This updates the existing record in the file with the new data provided by the user.
             file.write((char*)&car, sizeof(car));
 
             carFound = true;
@@ -228,6 +237,7 @@ void display_all()
     cout << "\n\t\t==============================================";
     while (inFile.read((char*)&car, sizeof(car)))
     {
+        // Display car details in the table format with setw() for proper spacing
         cout << "\n\t\t| " << setw(7) << car.car_numbers << " | " << setw(15) << car.driver_name << " | " << setw(14) << car.time_hours << " | ";
     }
     doubledash();     
@@ -248,10 +258,10 @@ int login() {
     cout << "\n\n\n\t\t\t\t\t\tEnter Password: ";
 
     password = _getch();
-    while (password != 13) { // character 13 is enter
-        pass.push_back(password);
-        cout << '*';
-        password = _getch();
+    while (password != 13) { // character 13 is the ASCII code for the 'Enter' key
+        pass.push_back(password); // Store each character of the password entered by the user
+        cout << '*'; // Display '*' instead of the actual characters for security
+        password = _getch();  // Read the next character
     }
     if (pass == "pass") {
         star_start();
