@@ -41,4 +41,8 @@ The project uses the following C++ standard libraries:
 ## Contact
 If you have any questions or suggestions regarding the project, please feel free to contact the project maintainer at [uzairarifjokhio@gmail.com](mailto:uzairarifjokhio@gmail.com).
 
+The work for the Project was jointly done by 
+1.[Uzair A. Jokhio](https://www.linkedin.com/in/uzair-arif-jokhio/) 
+2.[Safdar Sheikh](https://www.linkedin.com/in/safdar-shaikh-a64793259/)
+
 We hope you find this Car Parking Management System helpful in efficiently managing your parking lot! Thank you for your interest in our project.
