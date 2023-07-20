@@ -32,9 +32,9 @@ void input_detail(Car& car)
 
     int d = 0;
     cout << "\n\n\t\tEnter the name of driver: ";
-    cin >> car.driver_name;
+    cin >> car.driver_name; 
     cout << "\n\n\t\tEnter the car number: ";
-    cin >> car.car_numbers;
+    cin >> car.car_numbers; 
     cout << "\n\n\t\tEnter the number of hours of stay: ";
     cin >> car.time_hours;
     cout << "\n\n\t\tEnter the time slot: ";
