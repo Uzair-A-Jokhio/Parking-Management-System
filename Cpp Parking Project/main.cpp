@@ -42,10 +42,10 @@ int main()
             cin >> f;
             if (f == 'y' || f == 'Y')
             {
-                ofstream f1("parking3.dat", ios::binary | ios::out | ios::app);
+                ofstream file1("parking3.dat", ios::binary | ios::out | ios::app);
                 Car car;
                 input_detail(car);
-                f1.write((char*)&car, sizeof(car));
+                file1.write((char*)&car, sizeof(car));
             }
             break;
         }

@@ -81,10 +81,10 @@ void calculate_price(const Car& car)
 
 
 
-
+//------------------ Displaying the information--------------------------
 void car_detail(const Car& car)
 {
-    doubledash();                                                 // user defined function from design.h
+    doubledash();  // user defined function from design.h
     cout << "\n\n\t\t\t\tCar Details";
     doubledash(); 
     cout << "\n\n\t\tDriver Name    : " << car.driver_name;
@@ -104,9 +104,11 @@ void delete_record()
     system("CLS");
     cout << "\n\n\t\tEnter the car no you want to get depart : ";
     cin >> n;
+
     ifstream inFile("parking3.dat", ios::binary);       // open the input file for reading
     ofstream outFile("temp.dat", ios::out | ios::binary);   // open a temporary file for writing 
     Car car;
+
     while (inFile.read((char*)&car, sizeof(car)))
     {
         // If the car number does not match the one to be deleted, write the record to the temporary file
@@ -137,15 +139,16 @@ void delete_record()
 
 void search_car()
 {   
-   
     int n;
     system("CLS");
     
     cout << "\n\n\t\tEnter the car no you want to search : ";
     cin >> n;
+
     ifstream inFile("parking3.dat", ios::binary);
     Car car;
     bool carFound = false;
+
     while (inFile.read((char*)&car, sizeof(car)))
     {
         if (car.car_numbers == n)
@@ -222,10 +225,10 @@ void display_all()
     Car car;
     cout << "\n\n\t\t=============================================";
     cout << "\n\t\t| Car No |   Driver Name   | Hours of Stay |";
-    cout << "\n\t\t=============================================";
+    cout << "\n\t\t==============================================";
     while (inFile.read((char*)&car, sizeof(car)))
     {
-        cout << "\n\t\t| " << setw(7) << car.car_numbers << " | " << setw(15) << car.driver_name << " | " << setw(14) << car.time_hours << " |";
+        cout << "\n\t\t| " << setw(7) << car.car_numbers << " | " << setw(15) << car.driver_name << " | " << setw(14) << car.time_hours << " | ";
     }
     doubledash();     
     inFile.close();
@@ -237,11 +240,13 @@ void display_all()
 int login() {
     string pass = "";
     char password;
+
     car_md();   // user defined function from design.h file
     star_start();
     cout << "\t\t\t\t\t\tCar Parking Reservation System Login\n";
     star_end();
     cout << "\n\n\n\t\t\t\t\t\tEnter Password: ";
+
     password = _getch();
     while (password != 13) { // character 13 is enter
         pass.push_back(password);
