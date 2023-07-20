@@ -1,4 +1,8 @@
 
+#include <iostream>
+#include <ostream>
+
+using namespace std;
 
 void doubledash() {
 	cout << "\n\t\t===============================================";
