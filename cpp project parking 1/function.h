@@ -267,12 +267,15 @@ int login() {
         star_start();
         cout << "\t\t\t\t\t\t  Access Granted! Welcome To Our System \n";
         star_end();
-        system("PAUSE");
+        system("PAUSE");// Pause the program to let the user read the success message
     }
-    else {
+    }
+    else{
+        // Display access denied message with decorative lines
         cout << "\n\n\n\t\t\t\tX X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X" << endl;
         cout << "\t\t\t\t\t\t Access Aborted...Please Try Again!!\n";
         cout << "\t\t\t\tX X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X" << endl;
+
         system("PAUSE");
         system("CLS");
         login();

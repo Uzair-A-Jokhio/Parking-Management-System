@@ -17,7 +17,9 @@ int main()
     {
         system("CLS");
         car_md();
+        setColor(33);
         cout << "\n\n\t\t  ====== CAR PARKING RESERVATION SYSTEM ======";
+        resetColor();
         cout << "\n\n";
         cout << " \t\t  ==========================================";
         cout << "\n\n\t\t\t  1. Arrival of a Car";

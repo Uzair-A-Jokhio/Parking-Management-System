@@ -30,3 +30,15 @@ void star_end() {
 void doubledash() {
 	cout << "\n\t\t===============================================";
 }
+
+// Function to set the text color
+void setColor(int color)
+{
+    cout << "\033[" << color << "m";
+}
+
+// Function to reset text color and formatting
+void resetColor()
+{
+    cout << "\033[0m";
+}
