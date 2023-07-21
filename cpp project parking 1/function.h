@@ -62,6 +62,9 @@ void input_detail(Car& car)
 void calculate_price(const Car& car)
 {
     char x;
+    
+    car_md(); // User-defined car model design from design.h file
+
     cout << "\n\t\n\tAre you a V.I.P: y/n ";
     cin >> x;
     system("CLS");
@@ -70,39 +73,55 @@ void calculate_price(const Car& car)
     cout << "\n\t\t\t Expense Calculation";
     doubledash();
 
-    if (x == 'y') {
-        cout << "\n\n\t\tThe total expense during parking: ";
-        cout << car.time_hours * 35 << " rupees";
+    if (x == 'y' || x == 'Y') {
+        // Display the total parking expense for VIP in green color
+        setColor(32); // Green color (32 is the ANSI escape code for green)
+        cout << "\n\n\t\tThe total expense during parking: " << car.time_hours * 35 << " rupees\n";
+        resetColor(); // Reset the color to default
     }
     else {
-        cout << "\n\n\t\tThe total expense during parking: ";
-        cout << car.time_hours * 15 << " rupees";
+        // Display the total parking expense for non-VIP in yellow color
+        setColor(33); // Yellow color (33 is the ANSI escape code for yellow)
+        cout << "\n\n\t\tThe total expense during parking: " << car.time_hours * 15 << " rupees\n";
+        resetColor(); // Reset the color to default
     }
 
     doubledash();
 }
+
 
 
 
 //------------------ Displaying the information--------------------------
 void car_detail(const Car& car)
 {
-    doubledash();  // user defined function from design.h
+    // Set color to Dark Gray 
+    setColor(90);
+    doubledash();  // user-defined function from design.h
     cout << "\n\n\t\t\t\tCar Details";
-    doubledash(); 
+    doubledash();
+    resetColor();
+
+    // Set color to Light Green
+    setColor(92);
     cout << "\n\n\t\tDriver Name    : " << car.driver_name;
     cout << "\n\t\tCar No          : " << car.car_numbers;
     cout << "\n\t\tHours Of Stay   : " << car.time_hours;
     cout << "\n\t\tTime Slot       : " << car.time_slot;
-    doubledash();
+    resetColor();
 
+    // Set color to Dark Gray 
+    setColor(90);
+    doubledash();
+    resetColor();
 }
+
 
 
 
 //------------------delete the records of the driver--------------------------------
 void delete_record()
-{   
+{
     int n;
     system("CLS");
     cout << "\n\n\t\tEnter the car no you want to get depart : ";
@@ -111,20 +130,37 @@ void delete_record()
     ifstream inFile("parking3.dat", ios::binary);       // open the input file for reading
     ofstream outFile("temp.dat", ios::out | ios::binary);   // open a temporary file for writing 
     Car car{};
+    bool carFound = false;
 
     // Loop through each record in the input file
     while (inFile.read((char*)&car, sizeof(car)))
     {
-        // If the car number does not match the one to be deleted, write the record to the temporary file
-        if (car.car_numbers != n)
+        // If the car number matches the one to be deleted, display the details and price
+        if (car.car_numbers == n)
+        {
+            car_detail(car); // Display the car details
+            calculate_price(car); // Display the parking price for the car
+            carFound = true;
+            cout << "\n\n\t\tPress any key to confirm the deletion of this record...";
+            _getch(); // Wait for user confirmation to delete the record
+        }
+        else
         {
             outFile.write((char*)&car, sizeof(car)); // Write the record to the temporary file
         }
     }
-    cout << "\n\n\t\t Parking Record Deleted";
 
     inFile.close();
     outFile.close();
+
+    if (carFound)
+    {
+        cout << "\n\n\t\t Parking Record Deleted";
+    }
+    else
+    {
+        cout << "\n\n\t\tCar not found!";
+    }
 
     if (remove("parking3.dat") != 0)
     {
@@ -136,17 +172,31 @@ void delete_record()
         cout << "\n\n\t\t Error renaming file";
         // Handle the error as needed
     }
+    doubledash();
 }
+
+
 
 
 
 //---------------------search the car details by car number--------------------
 void search_car()
-{   
+{
     int n;
     system("CLS");
-    
+
+    // Set color to Dark Gray 
+    setColor(90);
+    doubledash();   // user-defined function from design.h
+    cout << "\n\n\t\tSearch Car Details";
+    doubledash();
+    resetColor();
+
+    // Set color to Dark Green 
+    setColor(32);
     cout << "\n\n\t\tEnter Car NO#, you want to search : ";
+    resetColor();
+
     cin >> n;
 
     ifstream inFile("parking3.dat", ios::binary);
@@ -157,7 +207,10 @@ void search_car()
     {
         if (car.car_numbers == n)
         {
+            // Set color to Light Blue 
+            setColor(94);
             cout << "\n\n\t\tCar Found! Details:";
+            resetColor();
             car_detail(car);
             carFound = true;
             break;
@@ -167,9 +220,14 @@ void search_car()
 
     if (!carFound)
     {
+        // Set color to Red 
+        setColor(31);
         cout << "\n\n\t\tCar not found!";
+        // Set color to default
+        resetColor();
     }
 }
+
 
 
 //----------------------update the car details -------------------------
@@ -178,9 +236,13 @@ void update_car()
     int n;
     system("CLS");
 
-    doubledash();   // user defined function from design.h
+    // Set color to Dark Gray 
+    setColor(90);
+    doubledash();   // user-defined function from design.h
     cout << "\n\t\t\t\tUpdate Car Details";
-    doubledash();  
+    doubledash();
+    // Set color to default
+    resetColor();
 
     cout << "\n\n\t\tEnter the car number you want to update: ";
     cin >> n;
@@ -193,12 +255,27 @@ void update_car()
     {
         if (car.car_numbers == n)
         {
+            // Set color to Light Blue 
+            setColor(94);
             cout << "\n\n\t\tCar Found! Update the details:";
+            resetColor();
+
+            // Set color to Dark Green 
+            setColor(32);
             cout << "\n\n\t\tEnter the name of driver: ";
+            resetColor();
             cin >> car.driver_name;
+
+            // Set color to Dark Green 
+            setColor(32);
             cout << "\n\n\t\tEnter the number of hours of stay: ";
+            resetColor();
             cin >> car.time_hours;
+            
+            // Set color to Dark Green 
+            setColor(32);
             cout << "\n\n\t\tEnter the time slot: ";
+            resetColor();
             cin >> car.time_slot;
 
             // Move the file pointer to the position where the current record was read.
@@ -210,19 +287,25 @@ void update_car()
             file.write((char*)&car, sizeof(car));
 
             carFound = true;
+            // Set color to Light Blue 
+            setColor(94);
             cout << "\n\n\t\tCar details updated successfully!";
+            resetColor();
             break;
         }
     }
-
     file.close();
 
     if (!carFound)
     {
+        // Set color to Red 
+        setColor(31);
         cout << "\n\n\t\tCar not found!";
+        resetColor();
     }
-    doubledash();          
+    doubledash();
 }
+
 
 
 
@@ -246,13 +329,13 @@ void display_all()
     while (inFile.read((char*)&car, sizeof(car)))
     {
         // Display car details in the table format with setw() for proper spacing
-        // Set color to Light Blue (94 is the ANSI escape code for Light Blue)
+        // Set color to Light Blue 
         setColor(94);
         cout << "\n\t\t| " << setw(7) << car.car_numbers;
-        // Set color to Dark Green (32 is the ANSI escape code for Dark Green)
+        // Set color to Dark Green 
         setColor(32);
         cout << " | " << setw(15) << car.driver_name;
-        // Set color to Orange (33 is the ANSI escape code for Orange)
+        // Set color to Orange 
         setColor(33);
         cout << " | " << setw(14) << car.time_hours;
         cout << " | ";
