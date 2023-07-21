@@ -121,7 +121,7 @@ void car_detail(const Car& car)
 
 //------------------delete the records of the driver--------------------------------
 void delete_record()
-{
+{   
     int n;
     system("CLS");
     cout << "\n\n\t\tEnter the car no you want to get depart : ";
@@ -142,7 +142,7 @@ void delete_record()
             calculate_price(car); // Display the parking price for the car
             carFound = true;
             cout << "\n\n\t\tPress any key to confirm the deletion of this record...";
-            _getch(); // Wait for user confirmation to delete the record
+            int e = _getch(); // Wait for user confirmation to delete the record
         }
         else
         {
@@ -172,7 +172,7 @@ void delete_record()
         cout << "\n\n\t\t Error renaming file";
         // Handle the error as needed
     }
-    doubledash();
+    doubledash();          
 }
 
 
@@ -348,6 +348,35 @@ void display_all()
 
     inFile.close();
 }
+
+
+#include <cstdio> // Include this header for the remove function
+
+// Function to delete all records from the "parking3.dat" file
+void delete_all_records()
+{
+    system("CLS");
+    cout << "\n\n\t\t=== Delete All Records ===";
+
+    // Ask for confirmation before deleting all records
+    char confirm;
+    cout << "\n\n\t\tAre you sure you want to delete all records? (y/n): ";
+    cin >> confirm;
+
+    if (confirm == 'y' || confirm == 'Y')
+    {
+        // Open the "parking3.dat" file in binary mode for writing and truncate the file
+        ofstream outFile("parking3.dat", ios::binary | ios::trunc);
+        outFile.close();
+        cout << "\n\n\t\tAll records deleted successfully!";
+    }
+    else
+    {
+        cout << "\n\n\t\tDelete operation canceled.";
+    }
+}
+
+
 
 
 
