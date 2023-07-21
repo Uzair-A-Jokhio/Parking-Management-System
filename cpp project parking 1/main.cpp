@@ -33,7 +33,7 @@ int main()
         cout << "\n\n\t\t\t  5. Search by Car Number";
         cout << "\n\n\t\t\t  6. Update Car Details";
         cout << "\n\n\t\t\t  7. Departure of a Car";
-        cout << "\n\n\t\t\t  0. Exit Program";
+        cout << "\n\n\t\t\t  8. Exit Program";
         setColor(36); // set color to cyan
         cout << "\n\n\t\t  ==========================================";
         resetColor();
@@ -65,7 +65,7 @@ int main()
             // Open the "parking3.dat" file in binary mode for reading
             ifstream infile("parking3.dat", ios::binary | ios::in);
             int d = 1;
-            Car car;
+            Car car{};
             // Loop through the file to read and display all car records
             while (infile.read((char*)&car, sizeof(car)))
             {
@@ -85,7 +85,7 @@ int main()
         case 3:
         {
             ifstream infile("parking3.dat", ios::binary | ios::in);
-            Car car;
+            Car car{};
             while (infile.read((char*)&car, sizeof(car)))
             {
                 cout << "\n";
@@ -97,9 +97,9 @@ int main()
             infile.close();
             break;
         }
-        case 7:
+        case 4:
         {
-            delete_record(); // call the function from function.h
+            display_all();
             break;
         }
         case 5:
@@ -112,16 +112,17 @@ int main()
             update_car();
             break;
         }
-        case 4:
+        case 7:
         {
-            display_all();
+            delete_record(); // call the function from function.h
             break;
         }
-        case 0:
+        case 8:
         {
             system("CLS");
-            setColor(32); // Set color to green
-            cout << "\n\n\t\tGoodbye! Thank you for using our system.\n";
+            setColor(32); // 32 is the ANSI escape code for green
+            cout << "\n\n\n\n\n\t\t\tGoodbye! Thank you for using our system.\n\n";
+            cout << "\t\t\tDeveloped by Uzair Jokhio && Safdar Sheikh \n\n\n ";
             resetColor(); // Reset text color
             return 0;
         }

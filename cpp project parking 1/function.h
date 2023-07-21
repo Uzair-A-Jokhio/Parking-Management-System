@@ -110,7 +110,7 @@ void delete_record()
 
     ifstream inFile("parking3.dat", ios::binary);       // open the input file for reading
     ofstream outFile("temp.dat", ios::out | ios::binary);   // open a temporary file for writing 
-    Car car;
+    Car car{};
 
     // Loop through each record in the input file
     while (inFile.read((char*)&car, sizeof(car)))
@@ -150,7 +150,7 @@ void search_car()
     cin >> n;
 
     ifstream inFile("parking3.dat", ios::binary);
-    Car car;
+    Car car{};
     bool carFound = false;
 
     while (inFile.read((char*)&car, sizeof(car)))
@@ -186,7 +186,7 @@ void update_car()
     cin >> n;
 
     fstream file("parking3.dat", ios::binary | ios::in | ios::out);
-    Car car;
+    Car car{};
     bool carFound = false;
 
     while (file.read((char*)&car, sizeof(car)))
@@ -231,9 +231,9 @@ void display_all()
 {
     system("CLS");
     ifstream inFile("parking3.dat", ios::binary);
-    Car car;
-    cout << "\n\n\t\t=============================================";
-    cout << "\n\t\t| Car No |   Driver Name   | Hours of Stay |";
+    Car car{};
+    cout << "\n\n\t\t==============================================";
+    cout << "\n\t\t| Car No |   Driver Name   | Hours of Stay   |";
     cout << "\n\t\t==============================================";
     while (inFile.read((char*)&car, sizeof(car)))
     {
