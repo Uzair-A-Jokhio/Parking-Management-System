@@ -232,15 +232,37 @@ void display_all()
     system("CLS");
     ifstream inFile("parking3.dat", ios::binary);
     Car car{};
+
+    setColor(90);
     cout << "\n\n\t\t==============================================";
-    cout << "\n\t\t| Car No |   Driver Name   | Hours of Stay   |";
+    cout << "\n\t\t        Car Parking Reservation System        ";
     cout << "\n\t\t==============================================";
+    cout << "\n\t\t  Car No |   Driver Name   |  Hours of Stay   ";
+    cout << "\n\t\t==============================================";
+
+    // Set color to default
+    resetColor();
+
     while (inFile.read((char*)&car, sizeof(car)))
     {
         // Display car details in the table format with setw() for proper spacing
-        cout << "\n\t\t| " << setw(7) << car.car_numbers << " | " << setw(15) << car.driver_name << " | " << setw(14) << car.time_hours << " | ";
+        // Set color to Light Blue (94 is the ANSI escape code for Light Blue)
+        setColor(94);
+        cout << "\n\t\t| " << setw(7) << car.car_numbers;
+        // Set color to Dark Green (32 is the ANSI escape code for Dark Green)
+        setColor(32);
+        cout << " | " << setw(15) << car.driver_name;
+        // Set color to Orange (33 is the ANSI escape code for Orange)
+        setColor(33);
+        cout << " | " << setw(14) << car.time_hours;
+        cout << " | ";
+        resetColor();
     }
-    doubledash();     
+    setColor(90);
+    doubledash();
+    // Set color to default
+    resetColor();
+
     inFile.close();
 }
 
@@ -264,16 +286,22 @@ int login() {
         password = _getch();  // Read the next character
     }
     if (pass == "pass") {
+
+        setColor(32);
         star_start();
-        cout << "\t\t\t\t\t\t  Access Granted! Welcome To Our System \n";
+        cout << "\t\t\t\t\t\t  Access Granted! Welcome To Our System" << endl;
         star_end();
+        resetColor();
+
         system("PAUSE");// Pause the program to let the user read the success message
     }
     else{
         // Display access denied message with decorative lines
+        setColor(31);
         cout << "\n\n\n\t\t\t\tX X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X" << endl;
         cout << "\t\t\t\t\t\t Access Aborted...Please Try Again!!\n";
         cout << "\t\t\t\tX X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X X" << endl;
+        resetColor();
 
         system("PAUSE");
         system("CLS");
