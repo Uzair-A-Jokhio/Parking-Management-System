@@ -15,7 +15,7 @@ struct Car {
     int car_numbers;         // Car number
     float time_hours;        // Number of hours of stay
     char driver_name[15];    // Driver name
-    char vip_st;             // V.I.P status
+    char pay;             // Payment 
     char time_slot[50];      // Time slot of parking
 };
 
@@ -41,6 +41,8 @@ void input_detail(Car& car)
     cin >> car.time_hours;
     cout << "\n\n\t\tEnter the time slot: ";
     cin >> car.time_slot;
+    
+
 
     // Check if parking is available (assuming parking slots are limited to 20 and stay duration is less than 8 hours)
     if (d < 20 && car.time_hours < 8)
@@ -54,6 +56,8 @@ void input_detail(Car& car)
     }
 
     doubledash();
+    cout << "\n\n";
+    system("PAUSE");
 }
 
 
@@ -62,7 +66,7 @@ void input_detail(Car& car)
 void calculate_price(const Car& car)
 {
     char x;
-    
+    cout << "\n";
     car_md(); // User-defined car model design from design.h file
 
     cout << "\n\t\n\tAre you a V.I.P: y/n ";
@@ -104,7 +108,7 @@ void car_detail(const Car& car)
 
     // Set color to Light Green
     setColor(92);
-    cout << "\n\n\t\tDriver Name    : " << car.driver_name;
+    cout << "\n\n\t\tDriver Name     : " << car.driver_name;
     cout << "\n\t\tCar No          : " << car.car_numbers;
     cout << "\n\t\tHours Of Stay   : " << car.time_hours;
     cout << "\n\t\tTime Slot       : " << car.time_slot;
@@ -420,4 +424,57 @@ int login() {
         login();
     }
     return 0;
+}
+
+
+// Function to display parking slot visualization
+void display_parking_slots()
+{
+    system("CLS");
+    ifstream inFile("parking3.dat", ios::binary);
+    Car car{};
+    int parkingSlots[20] = { 0 }; // Initialize an array to represent parking slots (0 indicates an empty slot)
+
+    // Read the parking records and mark occupied slots in the array
+    while (inFile.read((char*)&car, sizeof(car)))
+    {
+        if (car.car_numbers >= 1 && car.car_numbers <= 20)
+        {
+            parkingSlots[car.car_numbers - 1] = 1; // Mark the slot as occupied
+        }
+    }
+
+    setColor(90);
+    doubledash();
+    cout << "\n\n\t\t\tParking Slot Visualization";
+    doubledash();
+    resetColor();
+
+    cout << "\n\n\t\t   Parking Layout";
+    cout << "\n\t\t---------------------\n";
+
+    for (int i = 0; i < 20; i++)
+    {
+        if (parkingSlots[i] == 0)
+        {
+            // Set color to Light Green
+            setColor(92);
+            cout << "\t\t[" << setw(2) << i + 1 << "]"; // Display empty slot number
+        }
+        else
+        {
+            // Set color to Light Red
+            setColor(91);
+            cout << "\t\t[" << setw(2) << "X" << "]"; // Display occupied slot with 'X'
+        }
+
+        if ((i + 1) % 5 == 0)
+        {
+            cout << "\n"; // Move to the next row after displaying 5 slots
+        }
+    }
+    resetColor();
+    inFile.close();
+
+    doubledash();
 }
