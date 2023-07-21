@@ -18,10 +18,14 @@ int main()
         system("CLS");
         car_md();
         setColor(33);
-        cout << "\n\n\t\t  ====== CAR PARKING RESERVATION SYSTEM ======";
+        cout << "\n\t\t=====================================================";
+        cout << "\n\t\t|            CAR PARKING RESERVATION SYSTEM         |";
+        cout << "\n\t\t=====================================================";
         resetColor();
         cout << "\n\n";
+        setColor(36); // set color to cyan
         cout << " \t\t  ==========================================";
+        resetColor();
         cout << "\n\n\t\t\t  1. Arrival of a Car";
         cout << "\n\n\t\t\t  2. Total number of cars arrived";
         cout << "\n\n\t\t\t  3. Total parking charges ";
@@ -30,7 +34,9 @@ int main()
         cout << "\n\n\t\t\t  6. Update Car Details";
         cout << "\n\n\t\t\t  7. Departure of a Car";
         cout << "\n\n\t\t\t  0. Exit Program";
+        setColor(36); // set color to cyan
         cout << "\n\n\t\t  ==========================================";
+        resetColor();
         cout << "\n\n";
         cout << "\t\t\t  Select Your Choice :: ";
 
@@ -114,13 +120,17 @@ int main()
         case 0:
         {
             system("CLS");
-            exit(0);// Exit the program with a status code of 0
-            break;
+            setColor(32); // Set color to green
+            cout << "\n\n\t\tGoodbye! Thank you for using our system.\n";
+            resetColor(); // Reset text color
+            return 0;
         }
         default:
         {
-            cout << "\n\n\t\tInvalid input";
-            cout << "\n\n\t\tPress Enter to continue";
+            setColor(31); // Set color to red
+            cout << "\n\n\t\tInvalid input. Please select a valid option.\n";
+            resetColor(); // Reset text color
+            break;
         }
         }
         _getch(); // Wait for a key press before clearing the console screen
