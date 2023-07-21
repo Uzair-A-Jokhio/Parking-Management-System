@@ -141,7 +141,9 @@ int main()
             break;
         }
         }
-        _getch(); // Wait for a key press before clearing the console screen
+        int g = _getch(); // Wait for a key press before clearing the console screen
+        g;
     }
+
     return 0;  // Return 0 to indicate successful execution of the main function
 }
