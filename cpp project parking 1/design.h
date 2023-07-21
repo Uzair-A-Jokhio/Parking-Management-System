@@ -44,7 +44,7 @@ void car_md() {
     cout << " =`-(_)--(_)-' " << endl;
     resetColor();
 
-    // Set name color to cyan (33 is the ANSI escape )
+    // Set name color to blue (94 is the ANSI escape )
     setColor(94);
     setColor(1);
     cout << "  Car Wala Bhai" << endl; // You can change the name..
