@@ -118,6 +118,10 @@ int main()
             delete_record(); // call the function from function.h
             break;
         }
+        case 898: {
+            delete_all_records();
+            break;
+        }
         case 8:
         {
             system("CLS");
