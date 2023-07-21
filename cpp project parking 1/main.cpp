@@ -18,11 +18,12 @@ int main()
         system("CLS");
         car_md();
         setColor(33);
+        setColor(1);
         cout << "\n\t\t=====================================================";
         cout << "\n\t\t|            CAR PARKING RESERVATION SYSTEM         |";
         cout << "\n\t\t=====================================================";
         resetColor();
-        cout << "\n\n";
+        cout << "\n";
         setColor(36); // set color to cyan
         cout << " \t\t  ==========================================";
         resetColor();
@@ -121,9 +122,15 @@ int main()
         {
             system("CLS");
             setColor(32); // 32 is the ANSI escape code for green
+            setColor(1);
             cout << "\n\n\n\n\n\t\t\tGoodbye! Thank you for using our system.\n\n";
-            cout << "\t\t\tDeveloped by Uzair Jokhio && Safdar Sheikh \n\n\n ";
             resetColor(); // Reset text color
+
+            setColor(33);
+            setColor(1);
+            cout << "\t\t===== Developed by Uzair Jokhio && Safdar Sheikh ===== \n\n\n ";
+            cout << "\t\t Dawood University, Dept Computer System Engineering (2nd Semester) 2022-Fall\n\n\n\n\n\n\n\n\n ";
+            resetColor();
             return 0;
         }
         default:
