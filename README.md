@@ -20,7 +20,7 @@ This repository contains a Car Parking Management System implemented in C++. The
 ![Main Menu](images_Parking_System/main.png)
 **Parking Slots**
 ![slots](images_Parking_System/slots.png)
-s
+
 ## How to Use
 1. Clone the repository to your local machine.
 2. Compile the source code using a C++ compiler (e.g., g++).
