@@ -34,7 +34,7 @@ void resetColor()
 
 void car_md() {
     /*A car model design */
-    // Set car color to orange (33 is the ANSI escape)
+    // Set car color to orange 
     setColor(33);
     setColor(1);
     /*A car model design */
@@ -44,7 +44,7 @@ void car_md() {
     cout << " =`-(_)--(_)-' " << endl;
     resetColor();
 
-    // Set name color to blue (94 is the ANSI escape )
+    // Set name color to blue
     setColor(94);
     setColor(1);
     cout << "  Car Wala Bhai" << endl; // You can change the name..

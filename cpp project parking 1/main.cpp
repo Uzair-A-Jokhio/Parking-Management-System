@@ -3,17 +3,18 @@
 #include<conio.h>       // For _getch() function
 #include<string.h>
 #include<process.h>    // For system("CLS") and system("PAUSE")
-#include "function.h"  // function header file user made 
+
+    // function header file user made 
+#include "function.h"  
 
 using namespace std;
-
 
 
 int main()
 {
     login();
     int choice;
-    while (1)
+    while (true)            
     {
         system("CLS");
         car_md();
@@ -34,7 +35,8 @@ int main()
         cout << "\n\n\t\t\t  5. Search by Car Number";
         cout << "\n\n\t\t\t  6. Update Car Details";
         cout << "\n\n\t\t\t  7. Departure of a Car";
-        cout << "\n\n\t\t\t  8. Exit Program";
+        cout << "\n\n\t\t\t  8. Display slots";
+        cout << "\n\n\t\t\t  9. Exit Program";
         setColor(36); // set color to cyan
         cout << "\n\n\t\t  ==========================================";
         resetColor();
@@ -46,15 +48,17 @@ int main()
         {
         case 1:
         {
-            char f;
-            cout << "\n\n\t\t== Do you want to continue? (y/n): ";
-            cin >> f;
-            if (f == 'y' || f == 'Y')
+            int n = 0;
+            int c = 1;
+            cout << "\n\n\t\t== NO of Customers:  ";
+            cin >> n;
+            while (c <= n )
             {   // Open the "parking3.dat" file in binary mode for writing and appending data
-                ofstream file1("parking3.dat", ios::binary | ios::out | ios::app);
+                ofstream file("parking3.dat", ios::binary | ios::out | ios::app);
                 Car car;
                 input_detail(car); // call the function to collect data from users
-                file1.write((char*)&car, sizeof(car)); // Write the car details to the file
+                file.write((char*)&car, sizeof(car)); // Write the car details to the file
+                c++;
             }
             break;
         }
@@ -115,15 +119,14 @@ int main()
         }
         case 7:
         {
-            delete_record(); // call the function from function.h
+            delete_record(); 
             break;
         }
-        case 898: {
-            delete_all_records();
+        case 8: {
+            parking_slots();
             break;
         }
-        case 8:
-        {
+        case 9:{
             system("CLS");
             setColor(32); // 32 is the ANSI escape code for green
             setColor(1);
@@ -137,11 +140,17 @@ int main()
             resetColor();
             return 0;
         }
+        case 898: {
+            DoomsDay();
+            break;
+        }
         default:
         {
             setColor(31); // Set color to red
             cout << "\n\n\t\tInvalid input. Please select a valid option.\n";
             resetColor(); // Reset text color
+            cout << "\n";
+            system("PAUSE");
             break;
         }
         }

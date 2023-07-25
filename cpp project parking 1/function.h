@@ -4,24 +4,28 @@
 #include<string.h>
 #include<process.h>       // For system("CLS") and system("PAUSE")
 #include<iomanip> 
-#include"design.h"        // design header file user made 
+#include <cstdio>    // Include this header for the remove function
 
+// design header file user made 
+#include"design.h"        
 
 using namespace std;
 
+// Global variable to keep track of the current number of occupied slots
+int occupiedSlots = 0;
+const int maxSlots = 20; // The maximum number of parking slots
 
 //---------------structure for information of car driver car no and other--------
 struct Car {
     int car_numbers;         // Car number
     float time_hours;        // Number of hours of stay
     char driver_name[15];    // Driver name
-    char vip_st;             // V.I.P status
+    char vip_status;         // vip_status
     char time_slot[50];      // Time slot of parking
 };
 
 
-
-//-----------------------void function for the collecting data--------------------
+//-----------------------void function for the collecting data---------------------
 void input_detail(Car& car)
 {
     system("CLS"); // Clear the console screen
@@ -30,7 +34,6 @@ void input_detail(Car& car)
     cout << "\n\t\t\t\tCar Parking Reservation";
     doubledash();
 
-    int d = 0; // // Initialize a variable to keep track of parking position
 
     // Prompt the user to enter the driver's name, car number, hours of stay, and time slot
     cout << "\n\n\t\tEnter the name of driver: ";
@@ -41,9 +44,11 @@ void input_detail(Car& car)
     cin >> car.time_hours;
     cout << "\n\n\t\tEnter the time slot: ";
     cin >> car.time_slot;
+    
+
 
     // Check if parking is available (assuming parking slots are limited to 20 and stay duration is less than 8 hours)
-    if (d < 20 && car.time_hours < 8)
+    if (occupiedSlots < maxSlots && car.time_hours < 12)
     {
         cout << "\n\n\t\tParking Available! You can park your car.";
         cout << "\n\n\t\tCar successfully parked!";
@@ -54,15 +59,16 @@ void input_detail(Car& car)
     }
 
     doubledash();
+    cout << "\n\n";
+    system("PAUSE");
 }
-
 
 
 //-------------------------calculating the price of the stay-----------------------
 void calculate_price(const Car& car)
 {
     char x;
-    
+    cout << "\n";
     car_md(); // User-defined car model design from design.h file
 
     cout << "\n\t\n\tAre you a V.I.P: y/n ";
@@ -90,9 +96,7 @@ void calculate_price(const Car& car)
 }
 
 
-
-
-//------------------ Displaying the information--------------------------
+//------------------ Displaying the information------------------------------------
 void car_detail(const Car& car)
 {
     // Set color to Dark Gray 
@@ -104,7 +108,7 @@ void car_detail(const Car& car)
 
     // Set color to Light Green
     setColor(92);
-    cout << "\n\n\t\tDriver Name    : " << car.driver_name;
+    cout << "\n\n\t\tDriver Name     : " << car.driver_name;
     cout << "\n\t\tCar No          : " << car.car_numbers;
     cout << "\n\t\tHours Of Stay   : " << car.time_hours;
     cout << "\n\t\tTime Slot       : " << car.time_slot;
@@ -115,8 +119,6 @@ void car_detail(const Car& car)
     doubledash();
     resetColor();
 }
-
-
 
 
 //------------------delete the records of the driver--------------------------------
@@ -176,10 +178,7 @@ void delete_record()
 }
 
 
-
-
-
-//---------------------search the car details by car number--------------------
+//---------------------search the car details by car number-------------------------
 void search_car()
 {
     int n;
@@ -229,8 +228,7 @@ void search_car()
 }
 
 
-
-//----------------------update the car details -------------------------
+//----------------------update the car details -------------------------------------
 void update_car()
 {
     int n;
@@ -307,9 +305,7 @@ void update_car()
 }
 
 
-
-
-//---------display all-----------------------------------------------------------------
+//---------display all---------------------------------------------------------------
 void display_all()
 {
     system("CLS");
@@ -350,10 +346,8 @@ void display_all()
 }
 
 
-#include <cstdio> // Include this header for the remove function
-
 // Function to delete all records from the "parking3.dat" file
-void delete_all_records()
+void DoomsDay()
 {
     system("CLS");
     cout << "\n\n\t\t=== Delete All Records ===";
@@ -375,8 +369,6 @@ void delete_all_records()
         cout << "\n\n\t\tDelete operation canceled.";
     }
 }
-
-
 
 
 
@@ -420,4 +412,109 @@ int login() {
         login();
     }
     return 0;
+}
+
+
+// Function to calculate the total number of occupied slots //helper functions
+void calculate_occupied_slots() 
+{
+    ifstream inFile("parking3.dat", ios::binary);
+    Car car{};
+    occupiedSlots = 0;
+
+    while (inFile.read((char*)&car, sizeof(car)))
+    {
+        if (car.car_numbers >= 1 && car.car_numbers <= maxSlots)
+        {
+            occupiedSlots++;
+        }
+    }
+
+    inFile.close();
+}
+
+
+// Function to display parking status and inform the user about the available slots  //helper functions
+void display_parking_status()
+{
+    calculate_occupied_slots();
+
+    setColor(36); // Set color to cyan
+
+    // Print decorative lines
+    cout << "\n\n\t\t" << setfill('=') << setw(52) << "=" << setfill(' ');
+
+    // Display parking status
+    cout << "\n\t\t| ";
+    cout << setw(40) << left << "Total Number of Occupied Slots:" << setw(6) << right << occupiedSlots << "/" << maxSlots << " |";
+    cout << "\n\t\t" << setfill('=') << setw(52) << "=" << setfill(' ');
+
+    // Display available parking message
+    if (occupiedSlots < maxSlots)
+    {
+        setColor(32); // Set color to green
+        cout << "\n\t\t| " << setw(48) << "Parking Available! You can park your car." << " |";
+    }
+    else
+    {
+        setColor(31); // Set color to red
+        cout << "\n\t\t| " << setw(47) << "Parking is FULL. No more entries allowed!" << " |";
+    }
+    resetColor();
+    cout << "\n\t\t" << setfill('=') << setw(52) << "=" << setfill(' ');
+}
+
+
+//-------------------- Function to display parking slot visualization---------------------------------
+void parking_slots()
+{
+    system("CLS");
+    ifstream inFile("parking3.dat", ios::binary);
+    Car car{};
+    int parkingSlots[maxSlots] = { 0 }; // Initialize an array to represent parking slots (0 indicates an empty slot)
+
+    // Read the parking records and mark occupied slots in the array
+    while (inFile.read((char*)&car, sizeof(car)))
+    {
+        if (car.car_numbers >= 1 && car.car_numbers <= maxSlots)
+        {
+            parkingSlots[car.car_numbers - 1] = 1; // Mark the slot as occupied
+        }
+    }
+
+    setColor(90);
+    doubledash();
+    cout << "\n\n\t\t\tParking Slot Visualization";
+    doubledash();
+    resetColor();
+
+    cout << "\n\n\t\t   Parking Layout";
+    cout << "\n\t\t-------------------------------------------------------\n";
+
+    for (int i = 0; i < maxSlots; i++)
+    {
+        if (parkingSlots[i] == 0)
+        {
+            // Set color to Light Green
+            setColor(92);
+            cout << "\t\t[" << setw(2) << i + 1 << "]"; // Display empty slot number
+        }
+        else
+        {
+            // Set color to Light Red
+            setColor(91);
+            cout << "\t\t[" << setw(2) << "X" << "]"; // Display occupied slot with 'X'
+        }
+
+        if ((i + 1) % 5 == 0)
+        {
+            cout << "\n"; // Move to the next row after displaying 5 slots
+        }
+    }
+    resetColor();
+    inFile.close();
+
+    cout << "\n\t\t" << setfill('=') << setw(52) << "=" << setfill(' ');
+    cout << "\n\n\n";
+    display_parking_status();  // helper function 
 }
