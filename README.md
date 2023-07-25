@@ -15,8 +15,12 @@ This repository contains a Car Parking Management System implemented in C++. The
 - **Display All Cars:** Users can view all the cars currently parked in the parking lot.
 - **Delete all:** Shush!! a secrets code which will delete all of data be wise as not to use it. 
 
+## Images
+**Main Menu**
 ![Main Menu](images_Parking_System/main.png)
-
+**Parking Slots**
+![slots](images_Parking_System/slots.png)
+s
 ## How to Use
 1. Clone the repository to your local machine.
 2. Compile the source code using a C++ compiler (e.g., g++).
