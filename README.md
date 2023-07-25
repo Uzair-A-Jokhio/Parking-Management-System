@@ -1,6 +1,6 @@
 # Car Parking Management System
 
-![login Page](cpp project parking 1\images Parking System\login.png)
+![login Page](images_Parking_System/login.png)
 
 ## Overview
 This repository contains a Car Parking Management System implemented in C++. The project was developed as a semester project for Dawood University. The system allows users to manage car parking by keeping track of car details, calculating parking charges, and providing various functionalities.
@@ -15,7 +15,7 @@ This repository contains a Car Parking Management System implemented in C++. The
 - **Display All Cars:** Users can view all the cars currently parked in the parking lot.
 - **Delete all:** Shush!! a secrets code which will delete all of data be wise as not to use it. 
 
-![Main Menu](cpp project parking 1\images Parking System\main.png)
+![Main Menu](images_Parking_System/main.png)
 
 ## How to Use
 1. Clone the repository to your local machine.
