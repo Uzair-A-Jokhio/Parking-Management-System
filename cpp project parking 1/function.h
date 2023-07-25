@@ -4,8 +4,10 @@
 #include<string.h>
 #include<process.h>       // For system("CLS") and system("PAUSE")
 #include<iomanip> 
-#include <cstdio> // Include this header for the remove function
-#include"design.h"        // design header file user made 
+#include <cstdio>    // Include this header for the remove function
+
+// design header file user made 
+#include"design.h"        
 
 using namespace std;
 
@@ -345,7 +347,7 @@ void display_all()
 
 
 // Function to delete all records from the "parking3.dat" file
-void delete_all_records()
+void DoomsDay()
 {
     system("CLS");
     cout << "\n\n\t\t=== Delete All Records ===";
@@ -431,6 +433,7 @@ void calculate_occupied_slots()
     inFile.close();
 }
 
+
 // Function to display parking status and inform the user about the available slots  //helper functions
 void display_parking_status()
 {
@@ -460,6 +463,7 @@ void display_parking_status()
     resetColor();
     cout << "\n\t\t" << setfill('=') << setw(52) << "=" << setfill(' ');
 }
+
 
 //-------------------- Function to display parking slot visualization---------------------------------
 void parking_slots()
@@ -512,5 +516,5 @@ void parking_slots()
 
     cout << "\n\t\t" << setfill('=') << setw(52) << "=" << setfill(' ');
     cout << "\n\n\n";
-    display_parking_status();
+    display_parking_status();  // helper function 
 }

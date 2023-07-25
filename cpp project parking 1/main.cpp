@@ -3,17 +3,18 @@
 #include<conio.h>       // For _getch() function
 #include<string.h>
 #include<process.h>    // For system("CLS") and system("PAUSE")
-#include "function.h"  // function header file user made 
+
+    // function header file user made 
+#include "function.h"  
 
 using namespace std;
-
 
 
 int main()
 {
     login();
     int choice;
-    while (true)
+    while (true)            
     {
         system("CLS");
         car_md();
@@ -78,7 +79,6 @@ int main()
                 cout << "\n\n\tThe Car position in the parking lot: " << d;
                 d++;
                 car_detail(car);
-                calculate_price(car);
                 cout << "\n";
                 cout << "\n\n\n";
                 system("PAUSE");
@@ -119,15 +119,11 @@ int main()
         }
         case 7:
         {
-            delete_record(); // call the function from function.h
-            break;
-        }
-        case 898: {
-            delete_all_records();
+            delete_record(); 
             break;
         }
         case 8: {
-            display_parking_slots();
+            parking_slots();
             break;
         }
         case 9:{
@@ -143,6 +139,10 @@ int main()
             cout << "\t\t Dawood University, Dept Computer System Engineering (2nd Semester) 2022-Fall\n\n\n\n\n\n\n\n\n ";
             resetColor();
             return 0;
+        }
+        case 898: {
+            DoomsDay();
+            break;
         }
         default:
         {
